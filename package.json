@@ -1,0 +1,8 @@
+{
+  "name": "site-blocker",
+  "version": "1.0.0",
+  "description": "Chrome extension to block access to sites at specific times or limit daily visits",
+  "scripts": {
+    "test": "node --test test/**/*.test.js"
+  }
+}
