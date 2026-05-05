@@ -5,9 +5,7 @@
   "description": "Block access to sites at specific times or limit daily visits",
   "permissions": [
     "storage",
-    "webRequest",
-    "tabs",
-    "scripting"
+    "tabs"
   ],
   "host_permissions": [
     "<all_urls>"
@@ -16,7 +14,6 @@
     "service_worker": "service-worker.js"
   },
   "action": {
-    "default_popup": "popup.html",
     "default_title": "Simple Site Blocker"
   },
   "content_scripts": [

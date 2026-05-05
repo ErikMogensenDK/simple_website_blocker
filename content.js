@@ -2,8 +2,24 @@
 chrome.runtime.sendMessage(
   { type: 'CHECK_BLOCK', url: window.location.href },
   (response) => {
+    console.log('Block check response:', response);
     if (response.blocked) {
+      console.log('Page blocked:', response.reason);
       showBlockedPage(response.reason);
+    } else if (response.ruleId) {
+      console.log('Time tracking started for rule:', response.ruleId);
+      // Start time tracking for duration-based rule
+      const interval = setInterval(() => {
+        console.log('Sending INCREMENT_TIME for rule:', response.ruleId);
+        chrome.runtime.sendMessage({ type: 'INCREMENT_TIME', ruleId: response.ruleId, minutes: 1 });
+      }, 60000); // Increment every minute
+
+      // On page unload, clear interval
+      window.addEventListener('beforeunload', () => {
+        clearInterval(interval);
+      });
+    } else {
+      console.log('Page allowed, no time tracking');
     }
   }
 );

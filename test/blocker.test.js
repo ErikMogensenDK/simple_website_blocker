@@ -1,6 +1,6 @@
-const { test } = require('node:test');
-const assert = require('node:assert');
-const { isTimeBlocked, urlMatches, isDailyLimitExceeded } = require('../lib/blocker.js');
+import { test } from 'node:test';
+import assert from 'node:assert';
+import { isTimeBlocked, urlMatches, isDailyLimitExceeded } from '../lib/blocker.ts';
 
 test('Time blocking - within blocked hours', () => {
   const rule = { startTime: '09:00', endTime: '17:00' };

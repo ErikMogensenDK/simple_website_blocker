@@ -1,0 +1,13 @@
+# Compiled JavaScript files (except root level needed for extension)
+lib/*.js
+
+# Dependencies
+node_modules/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
