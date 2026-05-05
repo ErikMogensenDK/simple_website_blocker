@@ -33,39 +33,42 @@ function showBlockedPage(reason) {
         body {
           margin: 0;
           padding: 20px;
-          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+          background: #2a2a2a;
           font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
           height: 100vh;
           display: flex;
           align-items: center;
           justify-content: center;
+          color: #f8f8f8;
         }
         .container {
-          background: white;
+          background: #333333;
           border-radius: 12px;
-          padding: 40px;
+          padding: 32px;
           max-width: 500px;
           text-align: center;
-          box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+          border: 1px solid #555555;
         }
         h1 {
-          color: #333;
+          color: #f8f8f8;
           margin: 0 0 16px 0;
-          font-size: 32px;
+          font-size: 28px;
+          font-weight: 600;
         }
         p {
-          color: #666;
+          color: #cccccc;
           margin: 8px 0;
           font-size: 16px;
           line-height: 1.6;
         }
         .reason {
-          background: #f0f0f0;
+          background: #404040;
           padding: 16px;
           border-radius: 8px;
           margin: 24px 0;
-          color: #764ba2;
-          font-weight: 600;
+          color: #f8f8f8;
+          font-weight: 500;
+          border: 1px solid #555555;
         }
       </style>
     </head>
