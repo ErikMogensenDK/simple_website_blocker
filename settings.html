@@ -35,6 +35,19 @@
     .btn-small:hover { background: #404040; }
     .btn-delete { background: #662222; border-color: #883333; color: #f8f8f8; }
     .btn-delete:hover { background: #883333; }
+    .modal-overlay { position: fixed; inset: 0; background: rgba(0, 0, 0, 0.75); display: none; align-items: center; justify-content: center; padding: 20px; z-index: 1000; }
+    .modal-overlay.active { display: flex; }
+    .captcha-modal { width: min(96vw, 720px); max-height: 90vh; background: #181818; border-radius: 18px; overflow: hidden; display: grid; box-shadow: 0 20px 60px rgba(0,0,0,.45); }
+    .captcha-header { padding: 22px; background: #111; }
+    .captcha-title { font-size: 1.4rem; font-weight: 700; margin-bottom: 6px; }
+    .captcha-subtitle { color: #c6c6c6; font-size: 0.95rem; line-height: 1.4; }
+    .captcha-body { padding: 20px; display: grid; gap: 16px; overflow: auto; }
+    .captcha-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
+    .captcha-tile { position: relative; border: 2px solid transparent; border-radius: 14px; overflow: hidden; cursor: pointer; transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease; }
+    .captcha-tile img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .captcha-tile.selected { border-color: #3fcf8e; box-shadow: 0 0 0 4px rgba(63, 207, 142, 0.18); transform: scale(1.02); }
+    .captcha-actions { display: flex; flex-wrap: wrap; gap: 12px; justify-content: flex-end; }
+    .captcha-error { color: #ff7a7a; min-height: 1.25rem; font-size: 0.95rem; }
     @media (max-width: 680px) { .form-row { grid-template-columns: 1fr; } }
   </style>
 </head>
@@ -43,8 +56,8 @@
     <section class="panel">
       <header>
         <h1>Simple Site Blocker</h1>
-        <p class="subtitle">Create and manage smart blocking rules on a dedicated settings screen, with a clean, modern interface designed for productivity.</p>
       </header>
+        <p class="subtitle">Create and manage smart blocking rules on a dedicated settings screen, with a clean, modern interface designed for productivity.</p>
       <div class="body">
         <div class="field-grid">
           <div class="form-group">
@@ -97,6 +110,23 @@
       </div>
     </section>
   </main>
+
+  <div id="captchaOverlay" class="modal-overlay" aria-hidden="true">
+    <div class="captcha-modal" role="dialog" aria-modal="true" aria-labelledby="captchaTitle">
+      <div class="captcha-header">
+        <div id="captchaTitle" class="captcha-title">Confirm action</div>
+        <div class="captcha-subtitle">Select every image that contains a chihuahua to proceed with disabling or deleting the rule.</div>
+      </div>
+      <div class="captcha-body">
+        <div class="captcha-grid" id="captchaGrid"></div>
+        <div class="captcha-error" id="captchaError"></div>
+        <div class="captcha-actions">
+          <button id="captchaCancel" class="btn-small secondary" type="button">Cancel</button>
+          <button id="captchaConfirm" class="btn-small primary" type="button">Verify and continue</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <script src="settings.js"></script>
 </body>
